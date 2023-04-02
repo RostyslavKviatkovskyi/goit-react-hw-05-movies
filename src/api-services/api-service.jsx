@@ -47,9 +47,21 @@ const fetchMovieDetailById = async id => {
   }
 };
 
+const fetchMovieByQuery = async query => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${query}`
+    );
+    return response;
+  } catch {
+    console.log('The request was failed. Add the correct movie title');
+  }
+};
+
 export {
   fetchMoviesDay,
   fetchMovieCast,
   fetchMovieReviews,
   fetchMovieDetailById,
+  fetchMovieByQuery,
 };
