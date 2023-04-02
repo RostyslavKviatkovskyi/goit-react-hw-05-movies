@@ -16,17 +16,6 @@ export const Home = () => {
 
   return (
     <main>
-      {/* <h1>Trending today</h1>
-
-      {movies.length > 0 && (
-        <ul>
-          {movies.map(({ id, title }) => (
-            <li key={id}>
-              <Link to={`movies/${id}`}>{title}</Link>
-            </li>
-          ))}
-        </ul>
-      )} */}
       <MoviesList movies={movies} />
     </main>
   );

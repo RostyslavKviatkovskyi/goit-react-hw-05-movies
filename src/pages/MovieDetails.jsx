@@ -1,5 +1,5 @@
 import { fetchMovieDetailById } from 'api-services/api-service';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Link, Outlet, useParams } from 'react-router-dom';
 import { BackButton } from '../components/BackButton';
 import placeholder from '../images/placeholder.jpg';
@@ -51,13 +51,12 @@ export const MovieDetails = () => {
       </div>
 
       <nav>
-        {/* <Link to={`/movies/${movieId}/cast`}>Cast</Link>
-        <Link to={`/movies/${movieId}/reviews`}>Reviews</Link> */}
         <Link to={`cast`}>Cast</Link>
         <Link to={`reviews`}>Reviews</Link>
       </nav>
-
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
