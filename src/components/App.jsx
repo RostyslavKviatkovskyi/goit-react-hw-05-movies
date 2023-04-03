@@ -16,10 +16,10 @@ const Home = lazy(() =>
   import('../pages/Home').then(module => ({ default: module.Home }))
 );
 const Cast = lazy(() =>
-  import('./Cast').then(module => ({ default: module.Cast }))
+  import('./Cast/Cast').then(module => ({ default: module.Cast }))
 );
 const Reviews = lazy(() =>
-  import('./Reviews').then(module => ({ default: module.Reviews }))
+  import('./Reviews/Reviews').then(module => ({ default: module.Reviews }))
 );
 
 export const App = () => {

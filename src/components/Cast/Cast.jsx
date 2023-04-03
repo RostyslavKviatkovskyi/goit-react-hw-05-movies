@@ -1,8 +1,7 @@
 import { fetchMovieCast } from 'api-services/api-service';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
-const BASE_URL = 'https://api.themoviedb.org/3/';
+import { List, Container, Image } from './CastStyled';
 
 export const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -15,13 +14,13 @@ export const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
+    <Container>
       {cast.length > 0 && (
-        <ul>
+        <List>
           {cast.map(({ id, original_name, profile_path }) => (
             <li key={id}>
               {profile_path && (
-                <img
+                <Image
                   src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                   alt={original_name}
                 />
@@ -29,8 +28,8 @@ export const Cast = () => {
               <p>{original_name}</p>
             </li>
           ))}
-        </ul>
+        </List>
       )}
-    </div>
+    </Container>
   );
 };

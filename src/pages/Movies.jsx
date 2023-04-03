@@ -1,5 +1,5 @@
 import { fetchMovieByQuery } from 'api-services/api-service';
-import { MoviesList } from 'components/MoviesList';
+import { MoviesList } from 'components/MooviesList/MoviesList';
 import { SearchForm } from 'components/SearchForm';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
