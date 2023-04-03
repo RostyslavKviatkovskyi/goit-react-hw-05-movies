@@ -3,10 +3,10 @@ import axios from 'axios';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const API_KEY = '248c7debf175a4fcfc603a67fcb6bb7a';
 
-const fetchMoviesDay = async page => {
+const fetchMoviesDay = async () => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${page}`
+      `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`
     );
     return response;
   } catch {

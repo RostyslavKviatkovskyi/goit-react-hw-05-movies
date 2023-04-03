@@ -4,15 +4,15 @@ import { MoviesList } from 'components/MooviesList/MoviesList';
 
 export const Home = () => {
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetchMoviesDay(page)
+    fetchMoviesDay()
       .then(response => {
         setMovies(response.data.results);
       })
       .catch(error => console.log(error));
-  }, [page]);
+  }, []);
 
   return (
     <main>
