@@ -13,7 +13,8 @@ export const MoviesList = ({ movies }) => {
             <li key={id}>
               <Link
                 to={`/movies/${id}`}
-                state={{ from: `${location.pathname}${location.search ?? ''}` }}
+                // state={{ from: `${location.pathname}${location.search ?? ''}` }}
+                state={{ from: location }}
               >
                 {title}
               </Link>

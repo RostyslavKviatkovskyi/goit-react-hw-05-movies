@@ -8,7 +8,7 @@ export const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const query = searchParams.get('query') ?? '';
+  const query = searchParams.get('query');
 
   const updateQueryString = query => {
     const nextParams = query !== '' ? { query } : {};
@@ -16,18 +16,20 @@ export const Movies = () => {
   };
 
   useEffect(() => {
+    if (!query) {
+      return;
+    }
     fetchMovieByQuery(query).then(response => {
       setMovies(response.data.results);
-      console.log(response.data);
     });
-  }, [query, setSearchParams]);
+  }, [query]);
 
   return (
     <div>
       <SearchForm
-        value={query}
-        // onSubmit={onFormSubmit}
-        onChange={updateQueryString}
+        // value={query}
+        onSubmit={updateQueryString}
+        // onChange={updateQueryString}
       />
       <MoviesList movies={movies} />
     </div>
