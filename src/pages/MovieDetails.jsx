@@ -1,12 +1,15 @@
 import { fetchMovieDetailById } from 'api-services/api-service';
-import { Suspense, useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { BackButton } from '../components/BackButton';
 import placeholder from '../images/placeholder.jpg';
 
 export const MovieDetails = () => {
   const [movieDetail, setMovieDetail] = useState(null);
   const { movieId } = useParams();
+  const location = useLocation();
+  const backLinkRef = location.state?.from ?? '/';
+  const backLocationOption = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     fetchMovieDetailById(movieId).then(response => {
@@ -35,7 +38,7 @@ export const MovieDetails = () => {
 
   return (
     <div>
-      <BackButton />
+      <BackButton to={backLinkRef}>Back to movies</BackButton>
 
       <div>
         <img src={movieImage} alt={movieDetail.title} />
@@ -51,8 +54,12 @@ export const MovieDetails = () => {
       </div>
 
       <nav>
-        <Link to={`cast`}>Cast</Link>
-        <Link to={`reviews`}>Reviews</Link>
+        <Link to={`cast`} state={{ from: backLocationOption.current }}>
+          Cast
+        </Link>
+        <Link to={`reviews`} state={{ from: backLocationOption.current }}>
+          Reviews
+        </Link>
       </nav>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
